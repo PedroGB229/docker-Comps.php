@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'root/nginx',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '383c7d62603b1eb7a0dcaa449077a604a41c8b35',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -210,9 +210,9 @@
             'dev_requirement' => false,
         ),
         'root/nginx' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '383c7d62603b1eb7a0dcaa449077a604a41c8b35',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
