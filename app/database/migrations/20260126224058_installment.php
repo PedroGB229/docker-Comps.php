@@ -9,9 +9,9 @@ final class Installment extends AbstractMigration
   
     public function change(): void
     {
-         $table = $this->table('installment', ['id' => false, 'primary_key' => ['id']]);
-        $table->addColumn('id', 'biginteger', ['identity' => true, 'null' => false]);
-            ->addColumn('id', 'biginteger', ['identity' => true])
+        $table = $this->table('installment', ['id' => false, 'primary_key' => ['id']]);
+        
+        $table->addColumn('id', 'biginteger', ['identity' => true, 'null' => false])
             ->addColumn('id_condicao_pagamento', 'biginteger')
             ->addColumn('numero_parcela', 'integer')
             ->addColumn('dias', 'integer')

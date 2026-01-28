@@ -6,17 +6,12 @@ use app\controller\Empresa;
 use app\controller\Home;
 use app\controller\Fornecedor;
 use app\controller\Login;
-use app\middleware\Auth;
+use app\middleware\Middleware;
 use Slim\Routing\RouteCollectorProxy;
 
 $app->get('/', Home::class . ':home')->add(Middleware::authentication());
-$app->get('/home', Home::class . ':home')->add(Middleware::authentication());
+$app->get('/home', Home::class . ':home');
 $app->get('/login', Login::class . ':login');
-
-// Redirecionamento para corrigir rota antiga
-$app->get('/empresa/lista', function ($request, $response) {
-    return $response->withHeader('Location', '//lista')->withStatus(302);
-});
 
 $app->group('/login', function (RouteCollectorProxy $group) {
     $group->post('/precadastro', Login::class . ':precadastro');
@@ -27,8 +22,8 @@ $app->group('/login', function (RouteCollectorProxy $group) {
 });
 
 $app->group('/usuario', function (RouteCollectorProxy $group) {
-    $group->get('/lista', User::class . ':lista')->add(Middleware::authentication());
-    $group->get('/cadastro', User::class . ':cadastro')->add(Middleware::authentication());
+    $group->get('/lista', User::class . ':lista');
+    $group->get('/cadastro', User::class . ':cadastro');
     $group->post('/listuser', User::class . ':listuser');
     $group->post('/update', User::class . ':update');
     $group->post('/insert', User::class . ':insert');
