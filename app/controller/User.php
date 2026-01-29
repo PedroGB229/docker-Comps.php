@@ -57,14 +57,18 @@ class User extends Base
         }
     }
     public function insert($request, $response)
-    {
+    {  
         try {
             $form = $request->getParsedBody();
             $FieldAndValues = [
                 'nome' => $form['nome'],
                 'sobrenome' => $form['sobrenome'],
                 'cpf' => $form['cpf'],
-                'rg' => $form['rg']
+                'rg' => $form['rg'],
+                'ativo' => $form['ativo'],
+                'administrador' => $form['administrador'],
+                'data_cadastro' => $form['data_cadastro'],
+                'data_atualizacao' => $form['data_atualizacao']
             ];
             $IsSave = InsertQuery::table('users')->save($FieldAndValues);
             if (!$IsSave) {
@@ -85,10 +89,14 @@ class User extends Base
                 return $this->SendJson($response, ['status' => false, 'msg' => 'Por favor informe o ID', 'id' => 0], 500);
             }
             $FieldAndValues = [
-                'nome' => $form['nome'],
-                'sobrenome' => $form['sobrenome'],
-                'cpf' => $form['cpf'],
-                'rg' => $form['rg']
+                'nome' => $form['nome'] ?? null,
+                'sobrenome' => $form['sobrenome'] ?? null,
+                'cpf' => $form['cpf'] ?? null,
+                'rg' => $form['rg'] ?? null,
+                'ativo' => $form['ativo'] ?? null,
+                'administrador' => $form['administrador'] ?? null,
+                'data_cadastro' => $form['data_cadastro'] ?? null,
+                'data_atualizacao' => $form['data_atualizacao'] ?? null
             ];
             $IsUpdate = UpdateQuery::table('users')->set($FieldAndValues)->where('id', '=', $id)->update();
             if (!$IsUpdate) {

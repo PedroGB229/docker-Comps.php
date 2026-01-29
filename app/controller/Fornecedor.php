@@ -197,7 +197,9 @@ class Fornecedor extends Base
                 'sobrenome_razao' => $form['sobrenome_razao'],
                 'cpf_cnpj' => $form['cpf_cnpj'],
                 'rg_ie' => $form['rg_ie'],
-                'data_cadastro' => $form['data_cadastro'] ?? null
+                'ativo' => $form['ativo'],
+                'data_cadastro' => $form['data_cadastro'],
+                'data_atualizacao' => $form['data_atualizacao'] 
             ];
             $IsUpdate = UpdateQuery::table('supplier')->set($FieldAndValues)->where('id', '=', $id)->update();
             if (!$IsUpdate) {
@@ -224,11 +226,13 @@ class Fornecedor extends Base
         try {
             $form = $request->getParsedBody();
             $FieldsAndValues = [
-                'nome_fantasia' => $form['nome_fantasia'] ?? null,
+                 'nome_fantasia' => $form['nome_fantasia'] ?? null,
                 'sobrenome_razao' => $form['sobrenome_razao'] ?? null,
                 'cpf_cnpj' => $form['cpf_cnpj'] ?? null,
                 'rg_ie' => $form['rg_ie'] ?? null,
-                'data_cadastro' => $form['data_cadastro'] ?? null
+                'ativo' => $form['ativo'] ?? null,
+                'data_cadastro' => $form['data_cadastro'] ?? null,
+                'data_atualizacao' => $form['data_atualizacao'] ?? null
             ];
             $IsSave = InsertQuery::table('supplier')->save($FieldsAndValues);
 

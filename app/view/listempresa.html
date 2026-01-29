@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card mt-2">
                 <div class="card-header">
-                    <a href="/fornecedor/cadastro" class="btn btn-success">Cadastrar</a>
+                    <a href="/empresa/cadastro" class="btn btn-success">Cadastrar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped" id="tabela">
@@ -17,6 +17,7 @@
                                 <th>CPF/CNPJ</th>
                                 <th>RG/IE</th>
                                 <th>Data Cadastro</th>
+                                <th>Ativo</th>
                                 <th>Ação</th>
                             </tr>
                         </thead>
@@ -30,5 +31,5 @@
 {% endblock %}
 {% block script %}
 {% include "script.html" %}
-<script defer type="module" src="/js/listfornecedor.js"></script>
+<script defer type="module" src="/js/listempresa.js"></script>
 {% endblock %}

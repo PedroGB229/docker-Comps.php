@@ -4,40 +4,32 @@ namespace app\middleware;
 
 class Middleware
 {
-    public static function authentication()
+    public static function route()
     {
-        #retorna uma clousure(função anônima)
-        $middleware = function ($request, $handeler) {
-            #Verifica se o usuário está autenticado
-            $response = $handeler->handle($request);
-            #captura o método 
+        $middleware = function ($request, $handler) {
+            $response = $handler->handle($request);
+            #CAPTURAMOS O METODOS DE REQUISIÇÃO.
             $method = $request->getMethod();
-
-            $pagina = $request->getrequestTarget();
-            if ($method === 'GET') {
-                #verificando se o usuário está autenticado, caso não esteja redireciona para a página de login
-                $usuariologado = empty($_SESSION['usuario']) || empty($_SESSION['usuario']['logado']);
-                #captura a rota atual
-                if ($usuariologado && $pagina !== '/login') {
-                    #destruir a sessão
-                    session_destroy();
-                    #redireciona para a página de login
-                    return $response->withHeader('Location', '/login')->withStatus(302);
+            #CAPTURAMOS A PAGINA SOLICITADA PELO USUÁRIO
+            $pagina = $request->getRequestTarget();
+            #CASO METODO SEJA GET VALIDAMOS O NIVEL DE ACESSO.
+            if ($method == 'GET') {
+                # SE O USUÁRIO ESTÁ LOGADO, REGENERA O ID DA SESSÃO PARA RENOVAR O TEMPO DE EXPIRAÇÃO DO COOKIE.
+                if (isset($_SESSION['users']) && boolval($_SESSION['users']['logado'])) {
+                    # O parâmetro 'true' remove o arquivo de sessão antigo do servidor.
+                    session_regenerate_id(true);
                 }
-                if ($pagina === '/Login') {
-                    if (!$usuariologado) {
-                        #redireciona para a página home
-                        return $response->withHeader('Location', '/')->withStatus(302);
-                    }
-                    if (empty($_SESSION['usuario']['ativo']) || !$_SESSION['usuario']['ativo']) {
-                        #destruir a sessão
-                        session_destroy();
-                        #redireciona para a página de login
-                        return $response->withHeader('Location', '/login')->withStatus(302);
-                    }
+                #Se já está logado e tenta acessar /login, redireciona para HOME
+                if ($pagina == '/login' && isset($_SESSION['users']) && boolval($_SESSION['users']['logado'])) {
+                    return $response->withHeader('Location', HOME)->withStatus(302);
+                }
+                #Se não estiver logado e não está tentando acessar /login, redireciona para login
+                if ((empty($_SESSION['users']) || !boolval($_SESSION['users']['logado'])) && ($pagina !== '/login')) {
+                    session_destroy();
+                    return $response->withHeader('Location', HOME . '/login')->withStatus(302);
                 }
             }
-            return $handeler->handle($request);
+            return $response;
         };
         return $middleware;
     }
