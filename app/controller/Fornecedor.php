@@ -230,9 +230,7 @@ class Fornecedor extends Base
                 'sobrenome_razao' => $form['sobrenome_razao'] ?? null,
                 'cpf_cnpj' => $form['cpf_cnpj'] ?? null,
                 'rg_ie' => $form['rg_ie'] ?? null,
-                'ativo' => $form['ativo'] ?? null,
-                'data_cadastro' => $form['data_cadastro'] ?? null,
-                'data_atualizacao' => $form['data_atualizacao'] ?? null
+                'ativo' => $form['ativo'] ?? 1
             ];
             $IsSave = InsertQuery::table('supplier')->save($FieldsAndValues);
 

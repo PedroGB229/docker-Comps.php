@@ -11,6 +11,7 @@ if (!Action) {
 }
 
 $('#cpf_cnpj').inputmask({ "mask": ["999.999.999-99", "99.999.999/9999-99"] });
+$('#rg').inputmask({ "mask": ["99999"] });
 
 async function insert() {
     //Valida todos os campos do formulário
@@ -31,7 +32,7 @@ async function insert() {
         //Em caso de erro encerramos o processo.
         return;
     }
-    const response = await Requests.SetForm('form').Post('/empresas/insert');
+    const response = await Requests.SetForm('form').Post('/empresa/insert');
     if (!response.status) {
         Swal.fire({
             icon: "error",
@@ -49,7 +50,7 @@ async function insert() {
     //Setamos o valor do campos ID para que se necessário alterar o registro
     document.getElementById('id').value = response.id;
     //Redireciona automaticamente para a lista de empresas após insert bem-sucedido
-    window.location.href = '/empresas/lista';
+    window.location.href = '/empresa/lista';
     Swal.fire({
         icon: "success",
         title: response.msg,
@@ -80,7 +81,7 @@ async function update() {
         //Em caso de erro encerramos o processo.
         return;
     }
-    const response = await Requests.SetForm('form').Post('/empresas/update');
+    const response = await Requests.SetForm('form').Post('/empresa/update');
     if (!response.status) {
         Swal.fire({
             icon: "error",

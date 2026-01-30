@@ -31,12 +31,11 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <label for="data_nascimento_abertura" class="form-label">Data de Nascimento/Abertura</label>
-                <input type="date" class="form-control" id="data_nascimento_abertura" name="data_nascimento_abertura"
-                    placeholder="Digite sua data de nascimento" required data-rule-validDate="true" value="{{ cliente.data_nascimento_abertura }}">
-                    <div class="invalid-feedback">
-                        Por favor digite uma data válida.
-                </div>
+                <label for="ativo" class="form-label">Ativo</label>
+                <select id="ativo" name="ativo" class="form-control">
+                    <option value="1" {% if cliente.ativo == 1 %}selected{% endif %}>Sim</option>
+                    <option value="0" {% if cliente.ativo == 0 %}selected{% endif %}>Não</option>
+                </select>
             </div>
             <div class="col-12">
                 <button class="btn btn-primary" type="button" id="insert">Salvar</button>

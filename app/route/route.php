@@ -1,7 +1,7 @@
 <?php
 
 use app\controller\User;
-use app\controller\cliente;
+use app\controller\Cliente;
 use app\controller\Empresa;
 use app\controller\Home;
 use app\controller\Fornecedor;
@@ -31,13 +31,13 @@ $app->group('/usuario', function (RouteCollectorProxy $group) {
     $group->post('/delete', User::class . ':delete');
 });
 $app->group('/cliente', function (RouteCollectorProxy $group) {
-    $group->get('/lista', cliente::class . ':lista');
-    $group->get('/cadastro', cliente::class . ':cadastro');
-    $group->post('/listcliente', cliente::class . ':listcliente');
-    $group->post('/update', cliente::class . ':update');
-    $group->post('/insert', cliente::class . ':insert');
-    $group->get('/alterar/{id}', cliente::class . ':alterar');
-    $group->post('/delete', cliente::class . ':delete');
+    $group->get('/lista', Cliente::class . ':lista');
+    $group->get('/cadastro', Cliente::class . ':cadastro');
+    $group->post('/listcliente', Cliente::class . ':listcliente');
+    $group->post('/update', Cliente::class . ':update');
+    $group->post('/insert', Cliente::class . ':insert');
+    $group->get('/alterar/{id}', Cliente::class . ':alterar');
+    $group->post('/delete', Cliente::class . ':delete');
 });
 $app->group('/empresa', function (RouteCollectorProxy $group) {
     $group->get('/lista', Empresa::class . ':lista');

@@ -11,6 +11,7 @@ if (!Action) {
 }
 
 $('#cpf').inputmask({ "mask": ["999.999.999-99", "99.999.999/9999-99"] });
+$('#rg').inputmask({ "mask": ["99999"] });
 
 async function insert() {
     //Valida todos os campos do formulário

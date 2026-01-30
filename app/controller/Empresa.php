@@ -7,7 +7,7 @@ use app\database\builder\SelectQuery;
 use app\database\builder\InsertQuery;
 use app\database\builder\UpdateQuery;
 
-class Empresas extends Base
+class Empresa extends Base
 {
 
     public function lista($request, $response)
@@ -16,7 +16,7 @@ class Empresas extends Base
             'titulo' => 'Lista da empresa'
         ];
         return $this->getTwig()
-            ->render($response, $this->setView('listempresas'), $dadosTemplate)
+            ->render($response, $this->setView('listempresa'), $dadosTemplate)
             ->withHeader('Content-Type', 'text/html')
             ->withStatus(200);
     }
@@ -230,9 +230,7 @@ class Empresas extends Base
                 'sobrenome_razao' => $form['sobrenome_razao'] ?? null,
                 'cpf_cnpj' => $form['cpf_cnpj'] ?? null,
                 'rg_ie' => $form['rg_ie'] ?? null,
-                'ativo' => $form['ativo'] ?? null,
-                'data_cadastro' => $form['data_cadastro'] ?? null,
-                'data_atualizacao' => $form['data_atualizacao'] ?? null
+                'ativo' => $form['ativo'] ?? 1
             ];
             $IsSave = InsertQuery::table('company')->save($FieldsAndValues);
 
