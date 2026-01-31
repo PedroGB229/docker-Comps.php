@@ -21,33 +21,36 @@
                     </div>
                     <div class="card-body">
                         <form id="formPaymentTerms">
-                            <div>
-                                <select class="form-select form-select-lg col-md-4" aria-label="Large select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">Pagamento à Vista</option>
-                                    <option value="2">Pagamento Antecipado</option>
-                                    <option value="3">Pagamento a Prazo (Net Terms)</option>
-                                    <option value="4">Pagamento recorrente</option>
-                                    <option value="5">Pagamento Parcelado</option>
-                                    <option value="6">Pix (Imediato, Agendado ou Parcelado)</option>
-                                    <option value="7">Cartão de Crédito</option>
-                                    <option value="8">Cartão de Débito</option>
-                                    <option value="9">Carteiras Digitais (E-wallets)</option>
-                                    <option value="10">Transferência Bancária (TED/DOC)</option>
-                                    <option value="11">Link de Pagamento</option>
-                                    <option value="12">Pagamento na Entrega</option>
-                                    <option value="13">Faturamento (B2B)</option>
-                                    <option value="14">Consignação</option>
-                                </select>
-                                <div class="col-md-4">
-                                    <label for="descricao" class="form-label">Condição de pagamento EX.
-                                        (Dinheiro)</label>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="tipo_pagamento" class="form-label">Tipo de Pagamento</label>
+                                    <select class="form-select" id="tipo_pagamento" name="tipo_pagamento">
+                                        <option selected>Selecione uma condição de pagamento</option>
+                                        <option value="1">Pagamento à Vista</option>
+                                        <option value="2">Pagamento Antecipado</option>
+                                        <option value="3">Pagamento a Prazo (Net Terms)</option>
+                                        <option value="4">Pagamento recorrente</option>
+                                        <option value="5">Pagamento Parcelado</option>
+                                        <option value="6">Pix (Imediato, Agendado ou Parcelado)</option>
+                                        <option value="7">Cartão de Crédito</option>
+                                        <option value="8">Cartão de Débito</option>
+                                        <option value="9">Carteiras Digitais (E-wallets)</option>
+                                        <option value="10">Transferência Bancária (TED/DOC)</option>
+                                        <option value="11">Link de Pagamento</option>
+                                        <option value="12">Pagamento na Entrega</option>
+                                        <option value="13">Faturamento (B2B)</option>
+                                        <option value="14">Consignação</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="descricao" class="form-label">Condição de pagamento EX. (Dinheiro)</label>
                                     <input type="text" class="form-control" id="descricao" name="descricao"
                                         value="{% if termo %}{{ termo.descricao }}{% endif %}" required>
                                 </div>
                             </div>
-                            class="form-group mb-3">
-                            <div class="form-check">
+
+                            <div class="form-group mb-3">
+                                <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="ativo" name="ativo" value="true" {%
                                     if termo and termo.ativo %}checked{% endif %}>
                                 <label class="form-check-label" for="ativo">
